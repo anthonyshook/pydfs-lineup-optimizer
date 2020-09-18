@@ -377,6 +377,7 @@ class LineupOptimizer:
             with_injured=with_injured,
             exposure_strategy=exposure_strategy,
         )
+        n = int(n)
         rules = self._rules.copy()
         rules.update(self.settings.extra_rules)
         if randomness:
