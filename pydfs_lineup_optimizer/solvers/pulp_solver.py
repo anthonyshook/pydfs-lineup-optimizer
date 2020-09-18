@@ -1,19 +1,21 @@
-from pulp import LpProblem, LpMaximize, LpVariable, lpSum, LpStatusOptimal, LpBinary
+from pulp import LpProblem, LpMaximize, LpVariable, lpSum, LpStatusOptimal, LpBinary, LpInteger, PULP_CBC_CMD
 from .base import Solver
 from .constants import SolverSign
 from .exceptions import SolverException
 
 
 class PuLPSolver(Solver):
-    LP_SOLVER = None
+    LP_SOLVER = PULP_CBC_CMD(verbose=False, msg=False)
 
     def __init__(self):
-        self.prob = None
-
-    def setup_solver(self):
         self.prob = LpProblem('Daily Fantasy Sports', LpMaximize)
 
-    def add_variable(self, name):
+    def setup_solver(self):
+        pass
+
+    def add_variable(self, name, min_value=None, max_value=None):
+        if any([min_value, max_value]):
+            return LpVariable(name, lowBound=min_value, upBound=max_value, cat=LpInteger)
         return LpVariable(name, cat=LpBinary)
 
     def set_objective(self, variables, coefficients):
@@ -45,7 +47,8 @@ class PuLPSolver(Solver):
         if self.prob.status == LpStatusOptimal:
             result = []
             for variable in self.prob.variables():
-                if round(variable.value()) == 1.0:
+                val = variable.value()
+                if val is not None and round(val) >= 1.0:
                     result.append(variable)
             return result
         else:

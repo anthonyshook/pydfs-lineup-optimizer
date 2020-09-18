@@ -1,4 +1,3 @@
-from __future__ import absolute_import, division
 import unittest
 from functools import partial
 from pydfs_lineup_optimizer import settings
@@ -9,6 +8,7 @@ from pydfs_lineup_optimizer.utils import ratio, get_positions_for_optimizer, lin
     list_intersection, process_percents
 from pydfs_lineup_optimizer.sites.draftkings.classic.settings import DraftKingsBasketballSettings, \
     DraftKingsFootballSettings, DraftKingsBaseballSettings, DraftKingsHockeySettings
+from pydfs_lineup_optimizer.tz import get_timezone, set_timezone
 from .utils import create_players
 
 
@@ -113,3 +113,16 @@ class LineupBuildingTestCase(unittest.TestCase):
         with self.assertRaises(LineupOptimizerException):
             # Should be 2 P
             self.link_mlb_positions(create_players(['SP', 'C', 'C', '1B', '2B', '3B', 'SS', 'OF', 'OF', 'OF']))
+
+
+class TZTestCase(unittest.TestCase):
+    def setUp(self):
+        self.default_tz = get_timezone()
+
+    def tearDown(self):
+        set_timezone(self.default_tz)
+
+    def test_change_tz(self):
+        new_tz = 'UTC'
+        set_timezone(new_tz)
+        self.assertEqual(get_timezone(), new_tz)

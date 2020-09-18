@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class Site:
     DRAFTKINGS = 'DRAFTKINGS'
     FANDUEL = 'FANDUEL'
@@ -5,6 +8,8 @@ class Site:
     FANTASY_DRAFT = 'FANTASY_DRAFT'
     FANBALL = 'FANBALL'
     DRAFTKINGS_CAPTAIN_MODE = 'DRAFTKINGS_CAPTAIN_MODE'
+    FANDUEL_SINGLE_GAME = 'FANDUEL_SINGLE_GAME'
+    DRAFTKINGS_TIERS = 'DRAFTKINGS_TIERS'
 
 
 class Sport:
@@ -20,3 +25,4 @@ class Sport:
     MMA = 'MMA'
     NASCAR = 'NASCAR'
     TENNIS = 'TENNIS'
+    CS = 'CS'

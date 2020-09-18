@@ -3,10 +3,9 @@ from pydfs_lineup_optimizer.player import Player
 from pydfs_lineup_optimizer.sites.draftkings.classic.importer import DraftKingsCSVImporter
 
 
-class DraftKingsCaptainModeCSVImporter(DraftKingsCSVImporter):  # pragma: nocover
+class DraftKingsTiersCSVImporter(DraftKingsCSVImporter):  # pragma: nocover
     def _row_to_player(self, row):
         try:
-            fppg_multiplier = 1.5 if row['Roster Position'] == 'CPT' else 1
             name = row['Name'].split()
             player = Player(
                 row['ID'],
@@ -14,9 +13,10 @@ class DraftKingsCaptainModeCSVImporter(DraftKingsCSVImporter):  # pragma: nocove
                 name[1] if len(name) > 1 else '',
                 row['Roster Position'].split('/'),
                 row['TeamAbbrev'],
-                float(row['Salary']),
-                float(row['AvgPointsPerGame']) * fppg_multiplier,
+                0,
+                float(row['AvgPointsPerGame']),
                 game_info=self._parse_game_info(row),
+                original_positions=row['Position'].split('/'),
                 **self.get_player_extra(row)
             )
         except KeyError:

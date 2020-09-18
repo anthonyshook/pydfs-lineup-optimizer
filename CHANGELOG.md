@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.3.0]
+- Added ability to print statistic after optimization run
+- Added cyclic spacing handling for set_spacing_for_positions method 
+- Added ability to change algorithm for exposure calculation
+- Added min games rule for DK optimizers
+- Added DK CSGO
+- Added DK Tiers
+- Added nascar/mma for FD
+- Refactored export
+- Refactored FanDuel single game optimizers
+- Fixed Yahoo export
+- Fixed restrict from opposing team method with max_allowed parameter
+
+## [v3.2.0]
+- Added randomize with projections range
+- Added max allowed parameter for restrict positions from opposing team
+- Fixed team stacking with spacing
+- Fixed ignore max_exposure in groups
+- Fixed FD Golf
+- Fixed yahoo import
+- Fixed FD NFL positions names
+
+## [v3.1.1]
+- Fixed position names and ordering for FanDuel LOL classic
+
+## [v3.1.0]
+- Added LOL for FanDuel
+- Fixed FanDuel Single Game incorrect lineups
+
+## [v3.0.1]
+- Fixed paring teams in DK
+
+## [v3.0.0]
+- Added new stacking api
+- Fixed min exposure
+- Added FanDuel NBA Single Game
+- Added sorting of players in lineup by game start time
+- Added export lineups for Fantasy Draft
+- Added confirmed starters rule
+- Fixed total teams rule for DK NHL
+- Fixed NHL export for DK
+- Dropped python 2 support
+- Added python 3.8 support
+
+## [v2.7.0]
+- Added rule for restricting players from same team
+- Added ability to specify several positions in stack
+- Added FanDuel Golf
+- Added ability to set player specific deviation for randomness mode
+- Added rule for forcing players from opposing team
+- Added ability to change default timezone
+- Added set total teams rule
+- Improved performance of positions for same team rule
+- Removed dropping of lowest score in FD NBA
+- Added missed DK Hockey min teams rule
+- Added average ownership to lineup printing
+- Fixed Yahoo Hockey settings positions
+
 ## [v2.6.2]
 - Fixed python 2.7 support
 
